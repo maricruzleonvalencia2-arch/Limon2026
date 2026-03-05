@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Limón2026 - Buscador Final</title>
+    <title>Limón2026 - Buscador Final Mejorado</title>
     <meta charset="UTF-8">
     <style>
         body { text-align:center; font-family: Arial; margin-top:50px; }
@@ -13,6 +13,8 @@
         .result a:hover { text-decoration:underline; }
         .result p { font-size:14px; color:#555; }
         .suggestion { font-size:16px; color:green; margin-bottom:15px; }
+        .sponsors { margin-top:30px; text-align:center; padding:10px; border:2px dashed #aaa; }
+        .premium { margin-top:20px; text-align:center; }
     </style>
 </head>
 <body>
@@ -24,8 +26,21 @@
 
 <div class="results" id="results"></div>
 
+<!-- Bloque de patrocinadores -->
+<div class="sponsors">
+    <h2>Patrocinadores</h2>
+    <p>Aquí aparecerá tu publicidad o marcas que apoyen Limón2026.</p>
+</div>
+
+<!-- Bloque de suscripción premium -->
+<div class="premium">
+    <h2>Suscripción Premium</h2>
+    <p>Contenido exclusivo para usuarios premium.</p>
+    <button onclick="alert('Próximamente: suscripción premium!')">Suscribirse</button>
+</div>
+
 <script>
-// Lista de artículos internos (puedes añadir más)
+// Lista de artículos internos
 const exampleData = [
     { title: "Cómo vender más", url: "https://www.entrepreneur.com/article/321347", desc: "Consejos prácticos para mejorar ventas." },
     { title: "Aprender a programar gratis", url: "https://www.freecodecamp.org/", desc: "Tutoriales completos de programación." },
@@ -41,7 +56,7 @@ function search() {
 
     if (!query) return;
 
-    // 1️⃣ Buscar en la lista interna
+    // 1️⃣ Buscar en artículos internos
     let filtered = exampleData.filter(item => item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query));
 
     // 2️⃣ Sugerencia si no hay resultados exactos
@@ -79,11 +94,3 @@ function search() {
 
 </body>
 </html>
-
-
-
-<div class="sponsors" style="margin-top:30px; text-align:center; padding:10px; border:2px dashed #aaa;">
-    <h2>Patrocinadores</h2>
-    <p>Aquí aparecerá tu publicidad o marcas que apoyen Limón2026.</p>
-</div>
-
