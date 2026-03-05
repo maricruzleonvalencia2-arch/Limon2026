@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Limón2026 - Buscador Final Mejorado</title>
+    <title>Limón2026 - Buscador Final Completo</title>
     <meta charset="UTF-8">
     <style>
         body { text-align:center; font-family: Arial; margin-top:50px; }
         input[type="text"] { width: 300px; height: 35px; font-size:18px; }
-        button { height: 35px; font-size:16px; cursor:pointer; }
+        button { height: 35px; font-size:16px; cursor:pointer; margin-left:5px; }
         .results { margin-top:30px; text-align:left; max-width:600px; margin-left:auto; margin-right:auto; }
         .result { margin-bottom:20px; }
         .result a { font-size:18px; color:blue; text-decoration:none; }
@@ -23,6 +23,7 @@
 
 <input id="searchInput" type="text" placeholder="Buscar...">
 <button onclick="search()">Buscar</button>
+<button onclick="loadDuck()">Ver más resultados</button>
 
 <div class="results" id="results"></div>
 
@@ -40,7 +41,7 @@
 </div>
 
 <script>
-// Lista de artículos internos
+// Artículos internos
 const exampleData = [
     { title: "Cómo vender más", url: "https://www.entrepreneur.com/article/321347", desc: "Consejos prácticos para mejorar ventas." },
     { title: "Aprender a programar gratis", url: "https://www.freecodecamp.org/", desc: "Tutoriales completos de programación." },
@@ -81,8 +82,14 @@ function search() {
         div.innerHTML = `<a href="${item.url}" target="_blank">${item.title}</a><p>${item.desc}</p>`;
         resultsDiv.appendChild(div);
     });
+}
 
-    // 4️⃣ Mostrar resultados reales de DuckDuckGo en un iframe
+// 4️⃣ Función para cargar resultados reales de DuckDuckGo
+function loadDuck() {
+    const query = document.getElementById("searchInput").value.trim();
+    if (!query) return;
+    const resultsDiv = document.getElementById("results");
+
     const iframe = document.createElement("iframe");
     iframe.src = `https://duckduckgo.com/html/?q=${encodeURIComponent(query)}`;
     iframe.style.width = "100%";
