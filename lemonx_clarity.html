@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lemonx Clarity</title>
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#0f172a;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.container {
+  width:700px;
+  text-align:center;
+}
+
+.logo {
+  font-size:40px;
+  margin-bottom:10px;
+  letter-spacing:2px;
+}
+
+.subtitle {
+  color:#94a3b8;
+  margin-bottom:40px;
+}
+
+input {
+  width:80%;
+  padding:15px;
+  border-radius:30px;
+  border:none;
+  font-size:16px;
+}
+
+button {
+  margin-top:20px;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:#38bdf8;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.card {
+  margin-top:30px;
+  background:#1e293b;
+  padding:25px;
+  border-radius:20px;
+  display:none;
+  text-align:left;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">Lemonx</div>
+  <div class="subtitle">Clarity Engine</div>
+
+  <input type="text" id="query" placeholder="Escribe cómo te estás sintiendo...">
+  <br>
+  <button onclick="analyze()">Buscar claridad</button>
+
+  <div class="card" id="result"></div>
+</div>
+
+<script>
+function analyze(){
+  const text = document.getElementById("query").value.toLowerCase();
+  const result = document.getElementById("result");
+
+  if(text.trim() === ""){
+    alert("Escribe algo primero 🍋");
+    return;
+  }
+
+  let response = "";
+
+  if(text.includes("cans") || text.includes("agot")){
+    response = `
+      <h3>🔎 Estado detectado: Agotamiento</h3>
+      <p>Estás en sobrecarga mental.</p>
+      <p>Micro acción hoy: elimina una responsabilidad innecesaria.</p>
+      <p>Plan 7 días: reorganizar prioridades y recuperar energía.</p>
+    `;
+  }
+  else if(text.includes("perdid") || text.includes("no sé")){
+    response = `
+      <h3>🔎 Estado detectado: Desorientación</h3>
+      <p>Estás en transición.</p>
+      <p>Micro acción hoy: escribe 3 cosas que ya no quieres en tu vida.</p>
+      <p>Siguiente paso: construir dirección mínima viable.</p>
+    `;
+  }
+  else if(text.includes("miedo")){
+    response = `
+      <h3>🔎 Estado detectado: Bloqueo por miedo</h3>
+      <p>Tu mente está protegiéndote.</p>
+      <p>Micro acción hoy: da un paso pequeño e imperfecto.</p>
+      <p>Plan 30 días: exposición progresiva al cambio.</p>
+    `;
+  }
+  else{
+    response = `
+      <h3>🔎 Estado detectado: Exploración</h3>
+      <p>Estás buscando claridad.</p>
+      <p>Micro acción hoy: define qué resultado quieres en 90 días.</p>
+      <p>Siguiente paso: dividirlo en 3 fases ejecutables.</p>
+    `;
+  }
+
+  result.innerHTML = response;
+  result.style.display = "block";
+}
+</script>
+
+</body>
+</html>

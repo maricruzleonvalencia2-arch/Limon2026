@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lemonx OS</title>
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#0d1117;
+  color:white;
+}
+
+.header {
+  text-align:center;
+  padding:40px 0 20px 0;
+  font-size:40px;
+  letter-spacing:3px;
+}
+
+.tabs {
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.tab {
+  padding:10px 20px;
+  border-radius:20px;
+  cursor:pointer;
+  background:#161b22;
+  transition:0.3s;
+}
+
+.tab:hover {
+  background:#30363d;
+}
+
+.container {
+  text-align:center;
+  padding:20px;
+}
+
+input {
+  width:60%;
+  padding:15px;
+  border-radius:30px;
+  border:none;
+  font-size:16px;
+}
+
+button {
+  margin-top:20px;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:#58a6ff;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.card {
+  margin:30px auto;
+  width:60%;
+  background:#161b22;
+  padding:20px;
+  border-radius:20px;
+  display:none;
+}
+</style>
+</head>
+<body>
+
+<div class="header">Lemonx OS</div>
+
+<div class="tabs">
+  <div class="tab" onclick="setMode('growth')">Growth</div>
+  <div class="tab" onclick="setMode('finance')">Finance</div>
+  <div class="tab" onclick="setMode('business')">Business</div>
+  <div class="tab" onclick="setMode('future')">Future</div>
+</div>
+
+<div class="container">
+  <input type="text" id="query" placeholder="¿Qué quieres mejorar o decidir?">
+  <br>
+  <button onclick="analyze()">Analizar</button>
+  <div class="card" id="result"></div>
+</div>
+
+<script>
+let mode = "growth";
+
+function setMode(selected){
+  mode = selected;
+}
+
+function analyze(){
+  const text = document.getElementById("query").value;
+  const result = document.getElementById("result");
+
+  if(text.trim() === ""){
+    alert("Describe tu objetivo 🍋");
+    return;
+  }
+
+  let content = "";
+
+  if(mode === "growth"){
+    content = "<h3>Growth Engine</h3><p>Plan de hábitos recomendado para: "+text+"</p>";
+  }
+  if(mode === "finance"){
+    content = "<h3>Finance Engine</h3><p>Proyección financiera estimada para: "+text+"</p>";
+  }
+  if(mode === "business"){
+    content = "<h3>Business Engine</h3><p>Validación estratégica para: "+text+"</p>";
+  }
+  if(mode === "future"){
+    content = "<h3>Future Engine</h3><p>Simulación de escenarios a 3 años para: "+text+"</p>";
+  }
+
+  result.innerHTML = content;
+  result.style.display = "block";
+}
+</script>
+
+</body>
+</html>

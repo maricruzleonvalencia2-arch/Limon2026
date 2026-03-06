@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lemonx Trinity</title>
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#0b0f19;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.container {
+  width:800px;
+  text-align:center;
+}
+
+.logo {
+  font-size:38px;
+  margin-bottom:10px;
+  letter-spacing:2px;
+}
+
+.subtitle {
+  color:#6b7280;
+  margin-bottom:40px;
+}
+
+input {
+  width:75%;
+  padding:16px;
+  border-radius:40px;
+  border:none;
+  font-size:16px;
+}
+
+button {
+  margin-top:20px;
+  padding:14px 35px;
+  border:none;
+  border-radius:40px;
+  background:#2563eb;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.block {
+  margin-top:25px;
+  background:#111827;
+  padding:20px;
+  border-radius:15px;
+  text-align:left;
+  display:none;
+}
+
+.block h3 {
+  margin-top:0;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">Lemonx</div>
+  <div class="subtitle">Trinity Engine — Clarity. Direction. Action.</div>
+
+  <input type="text" id="query" placeholder="Escribe lo que está pasando...">
+  <br>
+  <button onclick="analyze()">Analizar</button>
+
+  <div class="block" id="clarity"></div>
+  <div class="block" id="direction"></div>
+  <div class="block" id="action"></div>
+</div>
+
+<script>
+function analyze(){
+  const text = document.getElementById("query").value.toLowerCase();
+
+  if(text.trim() === ""){
+    alert("Escribe algo primero.");
+    return;
+  }
+
+  let clarity = "";
+  let direction = "";
+  let action = "";
+
+  if(text.includes("cans") || text.includes("agot")){
+    clarity = "Estás agotado. No es falta de capacidad, es sobrecarga.";
+    direction = "No necesitas más motivación. Necesitas eliminar fricción.";
+    action = "Hoy elimina una tarea innecesaria y duerme 1 hora extra.";
+  }
+  else if(text.includes("perdid") || text.includes("no sé")){
+    clarity = "Estás desorientado porque no has decidido qué descartar.";
+    direction = "La claridad viene de eliminar opciones, no de agregar más.";
+    action = "Escribe 3 cosas que ya no quieres en tu vida y elimínalas.";
+  }
+  else if(text.includes("miedo")){
+    clarity = "No estás confundido. Estás evitando riesgo.";
+    direction = "El miedo indica crecimiento posible.";
+    action = "Da un paso pequeño hoy aunque sea imperfecto.";
+  }
+  else{
+    clarity = "Estás en fase de búsqueda activa.";
+    direction = "Necesitas estructura, no más información.";
+    action = "Define un objetivo de 30 días y rompe en pasos semanales.";
+  }
+
+  document.getElementById("clarity").innerHTML = "<h3>CLARIDAD</h3><p>"+clarity+"</p>";
+  document.getElementById("direction").innerHTML = "<h3>DIRECCIÓN</h3><p>"+direction+"</p>";
+  document.getElementById("action").innerHTML = "<h3>ACCIÓN</h3><p>"+action+"</p>";
+
+  document.getElementById("clarity").style.display = "block";
+  document.getElementById("direction").style.display = "block";
+  document.getElementById("action").style.display = "block";
+}
+</script>
+
+</body>
+</html>

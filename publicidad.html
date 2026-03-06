@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lemoon</title>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+padding:40px;
+background:#f4f4f4;
+}
+h1{color:#2e7d32;}
+input{
+padding:12px;
+width:80%;
+max-width:400px;
+font-size:16px;
+}
+button{
+padding:12px 18px;
+margin-top:10px;
+cursor:pointer;
+}
+.result{
+margin-top:30px;
+text-align:left;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+<body>
+
+<h1>🍋 Lemoon</h1>
+<p>Buscador Beta</p>
+
+<input type="text" id="searchInput" placeholder="Buscar en Lemoon...">
+<br>
+<button onclick="buscar()">🔎 Buscar</button>
+
+<div id="resultados"></div>
+
+<script>
+async function buscar() {
+let query = document.getElementById("searchInput").value;
+
+if(query.trim() === "") return;
+
+let url = "https://es.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(query);
+
+try{
+let response = await fetch(url);
+let data = await response.json();
+
+let contenedor = document.getElementById("resultados");
+
+if(data.extract){
+contenedor.innerHTML = `
+<div class="result">
+<h2>${data.title}</h2>
+<p>${data.extract}</p>
+<a href="${data.content_urls.desktop.page}" target="_blank">Leer más</a>
+</div>
+`;
+}else{
+contenedor.innerHTML = "<p>No se encontraron resultados.</p>";
+}
+
+}catch(error){
+document.getElementById("resultados").innerHTML = "<p>Error al buscar.</p>";
+}
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lemoon</title>
+<style>
+body{font-family:Arial;text-align:center;padding:20px;background:#f4f4f4;}
+h1{color:#2e7d32;}
+input{padding:10px;width:80%;max-width:300px;}
+button{padding:10px 15px;margin:5px;cursor:pointer;}
+#resultado,#articulos{
+margin-top:15px;
+background:white;
+padding:15px;
+border-radius:8px;
+}
+#articulos{background:#e3f2fd;}
+#ads{
+margin-top:30px;
+padding:10px;
+background:#fff8e1;
+}
+</style>
+</head>
+<body>
+
+<h1>🍋 Lemoon</h1>
+
+<input id="t" placeholder="Escribe tu búsqueda">
+<br><br>
+
+<button onclick="buscar()">🔎 Buscar</button>
+<button onclick="aprender()">📚 Aprender</button>
+
+<div id="resultado"></div>
+<div id="articulos"></div>
+
+<div id="ads">
+<b>Espacio publicitario disponible</b><br>
+<a href="publicidad.html">Anunciar mi empresa</a>
+</div>
+
+<script>
+function analizar(texto){
+return `
+📊 Diagnóstico:
+• ¿Cuál es el problema real?
+• ¿Qué está causando esto?
+• ¿Qué intentaste antes?
+
+🎯 Estrategia:
+1️⃣ Acción inmediata pequeña.
+2️⃣ Mejora progresiva.
+3️⃣ Medir resultados.
+
+🚀 Nivel avanzado:
+Investiga competencia y tendencias del mercado.
+`;
+}
+
+function buscar(){
+var texto=document.getElementById("t").value;
+var r=document.getElementById("resultado");
+var a=document.getElementById("articulos");
+
+if(texto==""){
+r.innerHTML="Escribe algo primero.";
+a.innerHTML="";
+return;
+}
+
+r.innerHTML="<h3>Resultado profesional sobre: "+texto+"</h3>"+analizar(texto);
+
+a.innerHTML="<b>Artículos recomendados:</b><br>"+
+"• Guía completa sobre '"+texto+"'.<br>"+
+"• Errores comunes en '"+texto+"'.<br>"+
+"• Caso de éxito relacionado con '"+texto+"'.";
+}
+
+function aprender(){
+var texto=document.getElementById("t").value;
+var r=document.getElementById("resultado");
+var a=document.getElementById("articulos");
+
+if(texto==""){
+r.innerHTML="Escribe algo primero.";
+a.innerHTML="";
+return;
+}
+
+r.innerHTML="<h3>Explicación sencilla</h3>"+
+texto+" explicado fácil:<br><br>"+
+"Imagina que se lo cuentas a alguien que nunca ha escuchado del tema. "+
+"Usa ejemplos simples y situaciones reales.";
+
+a.innerHTML="<b>Material educativo:</b><br>"+
+"• Conceptos básicos.<br>"+
+"• Ejemplo práctico.<br>"+
+"• Aplicación en la vida real.";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lemonx Trinity</title>
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#0b0f19;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.container {
+  width:800px;
+  text-align:center;
+}
+
+input {
+  width:70%;
+  padding:12px;
+  border-radius:30px;
+  border:none;
+  margin:8px;
+}
+
+button {
+  padding:10px 25px;
+  border:none;
+  border-radius:30px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+  margin:5px;
+}
+
+.block {
+  margin-top:20px;
+  background:#111827;
+  padding:20px;
+  border-radius:15px;
+  text-align:left;
+  display:none;
+}
+
+.hidden { display:none; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div id="auth">
+  <h2>Lemonx Login</h2>
+  <input type="text" id="username" placeholder="Usuario">
+  <input type="password" id="password" placeholder="Contraseña">
+  <br>
+  <button onclick="register()">Registrarse</button>
+  <button onclick="login()">Entrar</button>
+</div>
+
+<div id="app" class="hidden">
+  <h2>Bienvenido a Lemonx</h2>
+  <button onclick="logout()">Cerrar sesión</button>
+  <br><br>
+  <input type="text" id="query" placeholder="Escribe lo que está pasando...">
+  <br>
+  <button onclick="analyze()">Analizar</button>
+
+  <div class="block" id="clarity"></div>
+  <div class="block" id="direction"></div>
+  <div class="block" id="action"></div>
+</div>
+
+</div>
+
+<script>
+function register(){
+  const user = document.getElementById("username").value;
+  const pass = document.getElementById("password").value;
+
+  if(user && pass){
+    localStorage.setItem("lemonx_user", user);
+    localStorage.setItem("lemonx_pass", pass);
+    alert("Usuario registrado.");
+  }
+}
+
+function login(){
+  const user = document.getElementById("username").value;
+  const pass = document.getElementById("password").value;
+
+  if(user === localStorage.getItem("lemonx_user") &&
+     pass === localStorage.getItem("lemonx_pass")){
+       document.getElementById("auth").classList.add("hidden");
+       document.getElementById("app").classList.remove("hidden");
+  } else {
+    alert("Credenciales incorrectas.");
+  }
+}
+
+function logout(){
+  document.getElementById("auth").classList.remove("hidden");
+  document.getElementById("app").classList.add("hidden");
+}
+
+function analyze(){
+  const text = document.getElementById("query").value.toLowerCase();
+
+  let clarity = "Necesitas definir mejor tu situación.";
+  let direction = "Sin claridad no hay dirección.";
+  let action = "Escribe exactamente qué problema estás resolviendo.";
+
+  document.getElementById("clarity").innerHTML = "<h3>CLARIDAD</h3><p>"+clarity+"</p>";
+  document.getElementById("direction").innerHTML = "<h3>DIRECCIÓN</h3><p>"+direction+"</p>";
+  document.getElementById("action").innerHTML = "<h3>ACCIÓN</h3><p>"+action+"</p>";
+
+  document.getElementById("clarity").style.display = "block";
+  document.getElementById("direction").style.display = "block";
+  document.getElementById("action").style.display = "block";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lemonx PRO</title>
+<style>
+body {
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1f1c2c);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  font-family: Arial, sans-serif;
+  color:white;
+}
+
+@keyframes gradient {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+.container {
+  text-align:center;
+  width:650px;
+}
+
+.logo {
+  font-size:48px;
+  margin-bottom:30px;
+  letter-spacing:3px;
+}
+
+input {
+  width:80%;
+  padding:15px;
+  border-radius:40px;
+  border:none;
+  outline:none;
+  font-size:16px;
+}
+
+button {
+  margin:10px;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.normal { background:#00ffe7; }
+.pro { background:#ffcc00; }
+
+.card {
+  margin-top:30px;
+  background: rgba(255,255,255,0.1);
+  padding:20px;
+  border-radius:20px;
+  display:none;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">Lemonx</div>
+  <input type="text" id="query" placeholder="¿Qué quieres lograr realmente?">
+  <br>
+  <button class="normal" onclick="simulate()">Modo Normal</button>
+  <button class="pro" onclick="simulatePro()">Modo PRO</button>
+
+  <div class="card" id="result"></div>
+</div>
+
+<script>
+function simulate(){
+  const text = document.getElementById("query").value;
+  const result = document.getElementById("result");
+
+  if(text.trim() === ""){
+    alert("Describe tu idea primero 🍋");
+    return;
+  }
+
+  result.innerHTML = `
+    <h3>Análisis rápido</h3>
+    <p>Idea: ${text}</p>
+    <p>📊 Evaluación básica completada.</p>
+    <p>🍋 Recomendación: Valida mercado antes de invertir.</p>
+  `;
+
+  result.style.display = "block";
+}
+
+function simulatePro(){
+  const text = document.getElementById("query").value;
+  const result = document.getElementById("result");
+
+  if(text.trim() === ""){
+    alert("Describe tu idea primero 🍋");
+    return;
+  }
+
+  result.innerHTML = `
+    <h3>🔒 Lemonx PRO Strategic Engine</h3>
+    <p>Proyecto: ${text}</p>
+    <p>💰 Inversión estimada: $${Math.floor(Math.random()*50000+10000)}</p>
+    <p>📈 Mercado potencial: ${Math.floor(Math.random()*100)}% de crecimiento anual</p>
+    <p>⚠ Riesgo estructural: ${["Bajo","Medio","Alto"][Math.floor(Math.random()*3)]}</p>
+    <p>🧠 Estrategia recomendada: Implementar validación MVP en 30 días.</p>
+    <p>⭐ Confidence Score: ${Math.floor(Math.random()*40+60)}%</p>
+  `;
+
+  result.style.display = "block";
+}
+</script>
+
+</body>
+</html>

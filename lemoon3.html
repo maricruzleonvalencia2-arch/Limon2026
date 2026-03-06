@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lemoon</title>
+<style>
+body{
+font-family:Arial;
+text-align:center;
+padding:20px;
+background:#f4f4f4;
+}
+h1{color:#2e7d32;}
+input{
+padding:10px;
+width:80%;
+max-width:300px;
+}
+button{
+padding:10px 15px;
+margin:5px;
+cursor:pointer;
+}
+#resultado{
+margin-top:20px;
+background:white;
+padding:15px;
+border-radius:8px;
+box-shadow:0 0 5px rgba(0,0,0,0.2);
+}
+#ads{
+margin-top:30px;
+padding:15px;
+background:#fff8e1;
+border:1px dashed orange;
+}
+</style>
+</head>
+<body>
+
+<h1>🍋 Lemoon</h1>
+
+<input id="t" placeholder="Escribe tu búsqueda">
+<br><br>
+
+<button onclick="buscar()">🔎 Buscar</button>
+<button onclick="aprender()">📚 Aprender</button>
+
+<div id="resultado"></div>
+
+<div id="ads">
+<b>Publicidad</b><br>
+Aquí puede ir un anuncio futuro.
+</div>
+
+<script>
+function buscar(){
+var texto=document.getElementById("t").value;
+var r=document.getElementById("resultado");
+
+if(texto==""){
+r.innerHTML="Escribe algo primero.";
+return;
+}
+
+r.innerHTML="<b>Resultado para:</b> "+texto+
+"<br><br>📌 Sugerencia inteligente:<br>"+
+"1️⃣ Investiga más sobre '"+texto+"'.<br>"+
+"2️⃣ Mira tendencias relacionadas.<br>"+
+"3️⃣ Aplica una acción pequeña hoy.";
+}
+
+function aprender(){
+var texto=document.getElementById("t").value;
+var r=document.getElementById("resultado");
+
+if(texto==""){
+r.innerHTML="Escribe algo primero.";
+return;
+}
+
+r.innerHTML="<b>Explicación sencilla:</b><br><br>"+
+texto+" explicado fácil:<br>"+
+"Imagina que se lo cuentas a un niño de 10 años. "+
+"Descompón el tema en partes simples y ejemplos reales.";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lemoon</title>
+<style>
+body{
+font-family:Arial;
+text-align:center;
+padding:20px;
+background:#f4f4f4;
+}
+h1{color:#2e7d32;}
+input{
+padding:10px;
+width:80%;
+max-width:300px;
+}
+button{
+padding:10px 15px;
+margin:5px;
+cursor:pointer;
+}
+#resultado{
+margin-top:20px;
+background:white;
+padding:15px;
+border-radius:8px;
+}
+#articulos{
+margin-top:15px;
+background:#e3f2fd;
+padding:10px;
+border-radius:8px;
+}
+#ads{
+margin-top:30px;
+padding:10px;
+background:#fff8e1;
+}
+a{
+display:block;
+margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<h1>🍋 Lemoon</h1>
+
+<input id="t" placeholder="Escribe tu búsqueda">
+<br><br>
+
+<button onclick="buscar()">🔎 Buscar</button>
+<button onclick="aprender()">📚 Aprender</button>
+
+<div id="resultado"></div>
+<div id="articulos"></div>
+
+<div id="ads">
+<b>Espacio publicitario disponible</b><br>
+<a href="publicidad.html">¿Quieres anunciar tu empresa aquí?</a>
+</div>
+
+<script>
+function buscar(){
+var texto=document.getElementById("t").value;
+var r=document.getElementById("resultado");
+var a=document.getElementById("articulos");
+
+if(texto==""){
+r.innerHTML="Escribe algo primero.";
+a.innerHTML="";
+return;
+}
+
+r.innerHTML="<b>Información principal sobre:</b> "+texto+
+"<br><br>📌 Análisis rápido:<br>"+
+"• Problema detectado.<br>"+
+"• Posible causa.<br>"+
+"• Acción recomendada.";
+
+a.innerHTML="<b>Artículos relacionados:</b><br>"+
+"1️⃣ Cómo mejorar '"+texto+"'.<br>"+
+"2️⃣ Errores comunes en '"+texto+"'.<br>"+
+"3️⃣ Estrategias prácticas para '"+texto+"'.";
+}
+
+function aprender(){
+var texto=document.getElementById("t").value;
+var r=document.getElementById("resultado");
+var a=document.getElementById("articulos");
+
+if(texto==""){
+r.innerHTML="Escribe algo primero.";
+a.innerHTML="";
+return;
+}
+
+r.innerHTML="<b>Explicación sencilla:</b><br><br>"+
+texto+" explicado fácil y claro para niños.";
+
+a.innerHTML="<b>Contenido educativo extra:</b><br>"+
+"• Historia básica del tema.<br>"+
+"• Ejemplo práctico.<br>"+
+"• Dato curioso.";
+}
+</script>
+
+</body>
+</html>
