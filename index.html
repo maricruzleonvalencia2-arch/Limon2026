@@ -1,1 +1,83 @@
-<!-- actualización -->
+<!-- actualización -<!DOCTYPE html>
+<html>
+
+<head>
+<title>Limón</title>
+<meta charset="UTF-8">
+</head>
+
+<body>
+
+<h1>Buscador Limón</h1>
+
+<input type="text" id="buscar" placeholder="Buscar...">
+
+<button onclick="buscar()">Buscar</button>
+
+<h3>Búsquedas recientes</h3>
+
+<div id="historial"></div>
+
+<script>
+
+let historial = JSON.parse(localStorage.getItem("historial")) || [];
+
+function buscar() {
+
+let texto = document.getElementById("buscar").value;
+
+if(texto.trim() !== ""){
+
+historial.unshift(texto);
+
+localStorage.setItem("historial", JSON.stringify(historial));
+
+mostrarHistorial();
+
+}
+
+}
+
+function mostrarHistorial(){
+
+let contenedor = document.getElementById("historial");
+
+contenedor.innerHTML = "";
+
+historial.forEach((item,index)=>{
+
+let div = document.createElement("div");
+
+div.textContent = item;
+
+div.onclick = ()=>{
+
+document.getElementById("buscar").value = item;
+
+};
+
+div.oncontextmenu = (e)=>{
+
+e.preventDefault();
+
+historial.splice(index,1);
+
+localStorage.setItem("historial", JSON.stringify(historial));
+
+mostrarHistorial();
+
+};
+
+contenedor.appendChild(div);
+
+});
+
+}
+
+mostrarHistorial();
+
+</script>
+
+</body>
+
+</html>
